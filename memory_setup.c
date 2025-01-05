@@ -1,14 +1,15 @@
+#include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
 unsigned short num_rom_banks;
-u_int8_t **mem_banks;
-u_int8_t *rom1_bank;
-u_int8_t *rom2_bank;
+uint8_t **mem_banks;
+uint8_t *rom1_bank;
+uint8_t *rom2_bank;
 unsigned short num_ram_banks;
-u_int8_t **ram_bank;
-u_int8_t *cur_ram_bank;
+uint8_t **ram_bank;
+uint8_t *cur_ram_bank;
 
 int allocate_memory_banks(FILE *cart){
     if (fseek(cart, 327, SEEK_SET) != 0) {
@@ -94,7 +95,6 @@ int copy_rom(FILE *cart){
         printf("Copying bank %d\n", cur);
         memcpy(mem_banks[cur], bank, 16384);
         cur++;
-
     }
     printf("Verifying integrity\n");
     print_memory();
